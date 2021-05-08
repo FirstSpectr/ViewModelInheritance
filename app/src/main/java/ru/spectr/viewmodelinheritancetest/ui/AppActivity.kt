@@ -2,11 +2,12 @@ package ru.spectr.viewmodelinheritancetest.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
 import ru.spectr.viewmodelinheritancetest.R
 import ru.spectr.viewmodelinheritancetest.databinding.MainActivityBinding
 import ru.spectr.viewmodelinheritancetest.di.RootModule
-import ru.spectr.viewmodelinheritancetest.entities.Router
 import ru.spectr.viewmodelinheritancetest.di.installVMBinding
+import ru.spectr.viewmodelinheritancetest.entities.Router
 import ru.spectr.viewmodelinheritancetest.ui.main.MainFragment
 import ru.spectr.viewmodelinheritancetest.ui.second.SecondFragment
 import toothpick.ktp.KTP
@@ -32,10 +33,11 @@ class AppActivity : AppCompatActivity() {
         binding.delayButton.setOnClickListener { viewModel.onDelayClick() }
 
         router.moveForward = {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, SecondFragment())
-                .addToBackStack(null)
-                .commit()
+            supportFragmentManager.commit {
+                setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out)
+                replace(R.id.container, SecondFragment())
+                addToBackStack(null)
+            }
         }
 
         if (savedInstanceState == null) {

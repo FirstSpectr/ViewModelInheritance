@@ -13,7 +13,7 @@ import toothpick.ktp.KTP
 import toothpick.ktp.delegate.inject
 
 
-open class BaseViewModelImpl : ViewModel(), BaseViewModel {
+abstract class BaseViewModelImpl : ViewModel(), BaseViewModel {
     override val singleLiveData = MutableLiveData<LiveDataEvent<String>>()
     override var isViewDestroyed: Boolean = true
 
