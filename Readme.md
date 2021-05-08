@@ -3,4 +3,4 @@
 This project demonstrates how to move common presentation logic into the base view model
 
 
-![Demo](demo/demo1.mp4)
+![Demo](demo/demo1.gif)
